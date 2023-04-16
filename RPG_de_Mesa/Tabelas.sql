@@ -2,156 +2,152 @@
 
 --Jogadores
 CREATE TABLE jogadores (
-    apelido VARCHAR2 (20),
+    cod_j VARCHAR2 (4),
+    apelido VARCHAR2 (20) NOT NULL,
     nome    VARCHAR2 (255) NOT NULL,
     Sexo CHAR,
     idade NUMBER NOT NULL,
 
-    CONSTRAINT Jogadores_pkey PRIMARY KEY (apelido),
+    CONSTRAINT Jogadores_pkey PRIMARY KEY (cod_j),
     CONSTRAINT jogadores_checkGenero CHECK (sexo = 'M'or sexo = 'F' or sexo = 'O')
 );
 
 --Personagens
 CREATE TABLE personagens (
-    nome VARCHAR2 (20),
-    sexo CHAR,
+    cod_p VARCHAR2 (4),
+    nome VARCHAR2 (20) NOT NULL,
+    sexo CHAR NOT NULL,
     nivel NUMBER NOT NULL,
-    apelido_j VARCHAR2 (20),
+    cod_j VARCHAR2 (20),
 
-    CONSTRAINT personagens_pkey PRIMARY KEY (nome),
-    CONSTRAINT personagens_fkey FOREIGN KEY (apelido_j) REFERENCES jogadores (apelido)
+    CONSTRAINT personagens_pkey PRIMARY KEY (cod_p),
+    CONSTRAINT personagens_fkey FOREIGN KEY (cod_j) REFERENCES jogadores (cod_j)
 );
 
 --Equipamento 
 CREATE TABLE equipamento (
-    nome_p VARCHAR2 (20),
+    cod_p VARCHAR2 (4),
     arma VARCHAR2 (30),
     armadura VARCHAR2 (20),
 
-    CONSTRAINT equipamento_pkey PRIMARY KEY (nome_p),
-    CONSTRAINT equipamento_fkey FOREIGN KEY (nome_p) REFERENCES personagens(nome)
+    CONSTRAINT equipamento_pkey PRIMARY KEY (cod_p),
+    CONSTRAINT equipamento_fkey FOREIGN KEY (cod_p) REFERENCES personagens(cod_p)
 );
 
 --Elfo
 CREATE TABLE elfo (
-    nome_e VARCHAR2 (20),
-    raça VARCHAR2 (20), 
+    cod_e VARCHAR2 (4),
+    deidade VARCHAR2 (20), 
 
-    CONSTRAINT elfo_pkey PRIMARY KEY (nome_e),
-    CONSTRAINT elfo_fkey FOREIGN KEY (nome_e) REFERENCES personagens(nome)
+    CONSTRAINT elfo_pkey PRIMARY KEY (cod_e),
+    CONSTRAINT elfo_fkey FOREIGN KEY (cod_e) REFERENCES personagens(cod_p)
 );
 
 --Humano
 CREATE TABLE humano (
-    nome_h VARCHAR2 (20), 
+    cod_h VARCHAR2 (4), 
     nacao VARCHAR2 (20),
 
-    CONSTRAINT humano_pkey PRIMARY KEY (nome_h),
-    CONSTRAINT humano_fkey FOREIGN KEY (nome_h) REFERENCES personagens(nome)
+    CONSTRAINT humano_pkey PRIMARY KEY (cod_h),
+    CONSTRAINT humano_fkey FOREIGN KEY (cod_h) REFERENCES personagens(cod_p)
 );
 
---Anão
-CREATE TABLE anao (
-    nome_a VARCHAR2 (20),
+--Orc
+CREATE TABLE orc (
+    cod_o VARCHAR2 (4),
     tribo VARCHAR2 (20),
 
-    CONSTRAINT anao_pkey PRIMARY KEY (nome_a),
-    CONSTRAINT anao_fkey FOREIGN KEY (nome_a) REFERENCES personagens (nome)
+    CONSTRAINT anao_pkey PRIMARY KEY (cod_o),
+    CONSTRAINT anao_fkey FOREIGN KEY (cod_o) REFERENCES personagens (cod_p)
 );
 
 --Monstros
 CREATE TABLE monstros (
-    nome VARCHAR2 (20),
-    elemento VARCHAR2 (10),
-    nivel NUMBER,
-    classificacao VARCHAR2 (20),
+    cod_m VARCHAR2 (4),
+    nome VARCHAR2 (20) NOT NULL,
+    elemento VARCHAR2 (10) NOT NULL,
+    nivel NUMBER NOT NULL,
+    classificacao VARCHAR2 (20) NOT NULL,
 
-    CONSTRAINT monstros_pkey PRIMARY KEY (nome)
+    CONSTRAINT monstros_pkey PRIMARY KEY (cod_m)
 );
 
 --Lugares 
 CREATE TABLE lugares (
-    nome VARCHAR2 (20),
-    estado VARCHAR2 (15),
+    cod_l VARCHAR2 (4),
+    nome VARCHAR2 (20) NOT NULL,
+    estado VARCHAR2 (15) NOT NULL,
 
-    CONSTRAINT lugares_pkey PRIMARY KEY (nome)
+    CONSTRAINT lugares_pkey PRIMARY KEY (cod_l)
 );
 
---Recompensas 
-CREATE TABLE recompensas (
-    id VARCHAR2 (5),
-    item VARCHAR2 (20),
-    nome_p VARCHAR2 (20),
-    nome_m VARCHAR2 (20),
-    nome_l VARCHAR2 (20),
 
-    CONSTRAINT recompensas_pkey PRIMARY KEY (id),
-    CONSTRAINT recompensas_fkey1 FOREIGN KEY (nome_p) REFERENCES personagens (nome),
-    CONSTRAINT recompensas_fkey2 FOREIGN KEY (nome_m) REFERENCES monstros (nome),
-    CONSTRAINT recompensas_fkey3 FOREIGN KEY (nome_l) REFERENCES lugares (nome)
-);
 
 --Habilidades
 CREATE TABLE habilidades (
-    nome_m VARCHAR2 (20), 
+    cod_m VARCHAR2 (4), 
     habilidade VARCHAR2 (30),
 
-    CONSTRAINT habilidades_pkey PRIMARY KEY (nome_m),
-    CONSTRAINT habilidades_fkey FOREIGN KEY (nome_m) REFERENCES monstros(nome)
+    CONSTRAINT habilidades_pkey PRIMARY KEY (cod_m),
+    CONSTRAINT habilidades_fkey FOREIGN KEY (cod_m) REFERENCES monstros(cod_m)
 );
 
 --NPC
 CREATE TABLE npc (
-    nome_l VARCHAR2 (20),
+    cod_l VARCHAR2 (4),
     nome VARCHAR2 (20),
     funcao VARCHAR2 (10),
 
-    CONSTRAINT npc_pkey PRIMARY KEY (nome_l, nome),
-    CONSTRAINT npc_fkey FOREIGN KEY (nome_l) REFERENCES lugares(nome)
+    CONSTRAINT npc_pkey PRIMARY KEY (cod_l, nome),
+    CONSTRAINT npc_fkey FOREIGN KEY (cod_l) REFERENCES lugares(cod_l)
 );
 
 --Tutor
 CREATE TABLE tutor (
-    aprendiz VARCHAR2 (20),
-    mestre VARCHAR2 (20),
+    aprendiz VARCHAR2 (4),
+    mestre VARCHAR2 (4),
 
     CONSTRAINT tutor_pkey PRIMARY KEY (aprendiz),
-    CONSTRAINT tutor_fkey1 FOREIGN KEY (aprendiz) REFERENCES jogadores(apelido),
-    CONSTRAINT tutor_fkey2 FOREIGN key (mestre) REFERENCES jogadores(apelido)
+    CONSTRAINT tutor_fkey1 FOREIGN KEY (aprendiz) REFERENCES jogadores(cod_j),
+    CONSTRAINT tutor_fkey2 FOREIGN key (mestre) REFERENCES jogadores(cod_j)
 );
 
 --Player vc Player
 
 CREATE TABLE playervsplayer (
-    desafiante VARCHAR2 (20),
-    desafiado VARCHAR2 (20),
+    desafiante VARCHAR2 (4),
+    desafiado VARCHAR2 (4),
+    vencedor VARCHAR2 (1),
 
     CONSTRAINT playervsplayer_pkey PRIMARY KEY (desafiado, desafiante),
-    CONSTRAINT playervsplayer_fkey1 FOREIGN KEY (desafiado) REFERENCES personagens(nome),
-    CONSTRAINT playervsplayer_fkey2 FOREIGN KEY (desafiante) REFERENCES personagens (nome)
+    CONSTRAINT playervsplayer_fkey1 FOREIGN KEY (desafiado) REFERENCES personagens(cod_p),
+    CONSTRAINT playervsplayer_fkey2 FOREIGN KEY (desafiante) REFERENCES personagens (cod_p)
 );
 
 --Combate
 CREATE TABLE combate (
-    nome_p VARCHAR2 (20),
-    nome_m VARCHAR2 (20),
-    nome_l VARCHAR2 (20) NOT NULL,
+    cod_p VARCHAR2 (4),
+    cod_m VARCHAR2 (4),
+    cod_l VARCHAR2 (4) ,
     data_hora TIMESTAMP NOT NULL,
+    vencedor VARCHAR2 (1),
 
-    CONSTRAINT combate_pkey PRIMARY KEY (nome_p, nome_m, nome_l, data_hora),
-    CONSTRAINT combate_fkey1 FOREIGN KEY (nome_p) REFERENCES personagens(nome),
-    CONSTRAINT combate_fkey2 FOREIGN KEY (nome_m) REFERENCES monstros(nome),
-    CONSTRAINT combate_fkey3 FOREIGN KEY (nome_l) REFERENCES lugares(nome)
+    CONSTRAINT combate_pkey PRIMARY KEY (cod_p, cod_m, cod_l),
+    CONSTRAINT combate_fkey1 FOREIGN KEY (cod_p) REFERENCES personagens(cod_p),
+    CONSTRAINT combate_fkey2 FOREIGN KEY (cod_m) REFERENCES monstros(cod_m),
+    CONSTRAINT combate_fkey3 FOREIGN KEY (cod_l) REFERENCES lugares(cod_l)
 );
 
---Drop
-CREATE TABLE drops (
-    id_c VARCHAR2 (5),
-    data_hora_c TIMESTAMP NOT NULL,
+--Recompensas 
+CREATE TABLE recompensas (
+    id VARCHAR2 (4),
+    item VARCHAR2 (20),
+    cod_p VARCHAR2 (4),
+    cod_m VARCHAR2 (4),
+    cod_l VARCHAR2 (4),
 
-    CONSTRAINT drops_pkey PRIMARY KEY (id_c),
-    CONSTRAINT drops_fkey1 FOREIGN KEY (id_c) REFERENCES recompensas(id),
-    CONSTRAINT drops_fkey2 FOREIGN KEY (data_hora_c) REFERENCES combate(data_hora)
+    CONSTRAINT recompensas_pkey PRIMARY KEY (id),
+    CONSTRAINT recompensas_fkey1 FOREIGN KEY (cod_p, cod_m, cod_l)  REFERENCES combate (cod_p, cod_m, cod_l)
+    
 );
-
 
