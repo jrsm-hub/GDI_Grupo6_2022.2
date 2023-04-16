@@ -102,6 +102,18 @@ CREATE TABLE npc (
     CONSTRAINT npc_fkey FOREIGN KEY (cod_l) REFERENCES lugares(cod_l)
 );
 
+--Conversa
+CREATE TABLE conversa (
+    cod_p VARCHAR2 (4),
+    cod_l VARCHAR2 (4),
+    nome VARCHAR2 (20),
+
+    CONSTRAINT conversa_pkey PRIMARY KEY (cod_p, cod_l),
+    CONSTRAINT conversa_fkey1 FOREIGN KEY (cod_p) REFERENCES personagens(cod_p),
+    CONSTRAINT conversa_fkey3 FOREIGN KEY (cod_l, nome) REFERENCES npc(cod_l, nome)
+);
+
+
 --Tutor
 CREATE TABLE tutor (
     aprendiz VARCHAR2 (4),
