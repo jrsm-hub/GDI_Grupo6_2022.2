@@ -76,7 +76,7 @@ CREATE TABLE monstros (
 CREATE TABLE lugares (
     cod_l VARCHAR2 (4),
     nome VARCHAR2 (20) NOT NULL,
-    estado VARCHAR2 (15) NOT NULL,
+    tipo VARCHAR2 (15) NOT NULL,
 
     CONSTRAINT lugares_pkey PRIMARY KEY (cod_l)
 );
