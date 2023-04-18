@@ -141,10 +141,10 @@ CREATE TABLE combate (
     cod_p VARCHAR2 (4),
     cod_m VARCHAR2 (4),
     cod_l VARCHAR2 (4) ,
-    data_hora TIMESTAMP NOT NULL,
+    data_hora DATE NOT NULL,
     vencedor VARCHAR2 (1),
 
-    CONSTRAINT combate_pkey PRIMARY KEY (cod_p, cod_m, cod_l),
+    CONSTRAINT combate_pkey PRIMARY KEY (cod_p, cod_m, cod_l, data_hora),
     CONSTRAINT combate_fkey1 FOREIGN KEY (cod_p) REFERENCES personagens(cod_p),
     CONSTRAINT combate_fkey2 FOREIGN KEY (cod_m) REFERENCES monstros(cod_m),
     CONSTRAINT combate_fkey3 FOREIGN KEY (cod_l) REFERENCES lugares(cod_l)
