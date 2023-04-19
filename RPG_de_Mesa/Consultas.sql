@@ -19,6 +19,12 @@ INNER JOIN playervsplayer PVP ON (P.cod_p = PVP.desafiante)
 WHERE vencedor = 0
 ORDER BY nivel ASC
 
+SELECT nome as vulneravel
+FROM personagens 
+WHERE cod_p NOT IN (SELECT cod_p
+    		    FROM equipamento
+		    WHERE equipamento.armadura IS NOT NULL)
+
 --Operacao de Conjunto: Retorna todos os possiveis participantes em combate (Monstros e personagens)
 SELECT nome AS PARTICIPANTES_DE_COMBATE
 FROM personagens
