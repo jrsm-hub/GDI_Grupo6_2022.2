@@ -39,7 +39,7 @@ CREATE TABLE equipamento (
 --Elfo
 CREATE TABLE elfo (
     cod_e VARCHAR2 (4),
-    deidade VARCHAR2 (20), 
+    deidade VARCHAR2 (20) NOT NULL, 
 
     CONSTRAINT elfo_pkey PRIMARY KEY (cod_e),
     CONSTRAINT elfo_fkey FOREIGN KEY (cod_e) REFERENCES personagens(cod_p)
@@ -48,7 +48,7 @@ CREATE TABLE elfo (
 --Humano
 CREATE TABLE humano (
     cod_h VARCHAR2 (4), 
-    nacao VARCHAR2 (20),
+    nacao VARCHAR2 (20) NOT NULL,
 
     CONSTRAINT humano_pkey PRIMARY KEY (cod_h),
     CONSTRAINT humano_fkey FOREIGN KEY (cod_h) REFERENCES personagens(cod_p)
@@ -57,7 +57,7 @@ CREATE TABLE humano (
 --Orc
 CREATE TABLE orc (
     cod_o VARCHAR2 (4),
-    tribo VARCHAR2 (20),
+    tribo VARCHAR2 (20) NOT NULL,
 
     CONSTRAINT anao_pkey PRIMARY KEY (cod_o),
     CONSTRAINT anao_fkey FOREIGN KEY (cod_o) REFERENCES personagens (cod_p)
