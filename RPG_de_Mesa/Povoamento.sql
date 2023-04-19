@@ -34,6 +34,21 @@ INSERT INTO personagens VALUES ('2012', 'BoltFreez', 'M', 70, '1009');
 INSERT INTO personagens VALUES ('2013', 'DarkToto', 'F', 11, '1008');
 INSERT INTO personagens VALUES ('2014', 'FireFreedom', 'M', 50, '1003');
 
+INSERT INTO equipamento (cod_p, arma) VALUES ('2001', 'Machado');
+INSERT INTO equipamento VALUES ('2002', 'Martelo', 'Armadura de Ossos');
+INSERT INTO equipamento (cod_p, armadura) VALUES ('2003', 'Armadura Espinhenta');
+INSERT INTO equipamento VALUES ('2004', 'Espada', 'Armadura Pesada');
+INSERT INTO equipamento VALUES ('2005', 'Espada', 'Berserk Armor');
+INSERT INTO equipamento (cod_p, arma) VALUES ('2006', 'Masamune');
+INSERT INTO equipamento VALUES ('2007', 'Motoserra', 'Chainsaw Armor');
+INSERT INTO equipamento VALUES ('2008', 'Maça', 'Armadura de Aço');
+INSERT INTO equipamento VALUES ('2009', 'Machado', 'Armadura Enferrujada');
+INSERT INTO equipamento (cod_p, arma) VALUES ('2010', 'Dardo');
+INSERT INTO equipamento VALUES ('2011', 'Arco e Flecha', 'Armadura Leve');
+INSERT INTO equipamento VALUES ('2012', 'Cajado', 'Armadura Leve');
+INSERT INTO equipamento (cod_p, arma) VALUES ('2013', 'Adaga');
+INSERT INTO equipamento VALUES ('2014', 'Corrente', 'Armadura de Pegáso');
+
 INSERT INTO elfo VALUES ('2005', 'Khaen');
 INSERT INTO elfo VALUES ('2010', 'Hen');
 INSERT INTO elfo VALUES ('2011', 'Telluh');
