@@ -25,6 +25,13 @@ WHERE cod_p NOT IN (SELECT cod_p
     		    FROM equipamento
 		    WHERE equipamento.armadura IS NOT NULL)
 
+--SUBCONSULTA ESCALAR: retorna a data do drop do combate de um determinado local
+SELECT data_hora
+FROM combate 
+WHERE cod_l =  (SELECT cod_l
+		     FROM recompensas
+    		     WHERE id= '7006')
+
 --Operacao de Conjunto: Retorna todos os possiveis participantes em combate (Monstros e personagens)
 SELECT nome AS PARTICIPANTES_DE_COMBATE
 FROM personagens
@@ -33,8 +40,8 @@ SELECT nome
 FROM monstros
 
 
---Procedimentos/Funções
 
+--Procedimentos/Funções
 
 --Trigger: Retorna mensagem de erro quando se tenta inserir um nível de personagem negativo
 CREATE or REPLACE TRIGGER nivel_personagm_negativo
