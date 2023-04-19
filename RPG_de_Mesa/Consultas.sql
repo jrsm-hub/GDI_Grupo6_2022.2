@@ -28,6 +28,8 @@ FROM monstros
 
 
 --Procedimentos/Funções
+
+
 --Trigger: Retorna mensagem de erro quando se tenta inserir um nível de personagem negativo
 CREATE or REPLACE TRIGGER nivel_personagm_negativo
 BEFORE INSERT on personagens
@@ -78,4 +80,15 @@ BEGIN
 		DBMS_OUTPUT.PUT_LINE (nm || ' ' || nv);
 	END LOOP;
 	CLOSE cur_character;
+END;
+
+–Procedimento para mostrar todos os personagens que possuem nomes iguais a monstros
+CREATE PROCEDURE personagens_nome_monstro IS
+BEGIN
+  FOR entidade IN (SELECT nome
+  		   FROM personagens 
+    		   WHERE nome IN (SELECT nome FROM monstros))
+	  LOOP
+	 	dbms_output.put_line(entidade.nome);
+  	  END LOOP;
 END;
