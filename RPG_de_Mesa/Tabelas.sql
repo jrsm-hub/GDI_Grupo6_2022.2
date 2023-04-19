@@ -8,7 +8,8 @@ CREATE TABLE jogadores (
     Sexo CHAR,
     idade NUMBER NOT NULL,
 
-    CONSTRAINT Jogadores_pkey PRIMARY KEY (cod_j),
+    CONSTRAINT jogadores_pkey PRIMARY KEY (cod_j),
+    CONSTRAINT jogadores_akey UNIQUE (apelido),
     CONSTRAINT jogadores_checkGenero CHECK (sexo = 'M'or sexo = 'F' or sexo = 'O')
 );
 
@@ -21,6 +22,7 @@ CREATE TABLE personagens (
     cod_j VARCHAR2 (20),
 
     CONSTRAINT personagens_pkey PRIMARY KEY (cod_p),
+    CONSTRAINT personagens_akey UNIQUE (nome),
     CONSTRAINT personagens_fkey FOREIGN KEY (cod_j) REFERENCES jogadores (cod_j)
 );
 
