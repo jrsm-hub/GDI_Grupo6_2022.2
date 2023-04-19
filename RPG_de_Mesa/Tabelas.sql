@@ -98,7 +98,7 @@ CREATE TABLE habilidades (
 CREATE TABLE npc (
     cod_l VARCHAR2 (4),
     nome VARCHAR2 (20),
-    funcao VARCHAR2 (10),
+    funcao VARCHAR2 (10) NOT NULL,
 
     CONSTRAINT npc_pkey PRIMARY KEY (cod_l, nome),
     CONSTRAINT npc_fkey FOREIGN KEY (cod_l) REFERENCES lugares(cod_l)
