@@ -33,6 +33,8 @@ INSERT INTO personagens VALUES ('2011', 'ShieldHadess', 'F', 99, '1007');
 INSERT INTO personagens VALUES ('2012', 'BoltFreez', 'M', 70, '1009');
 INSERT INTO personagens VALUES ('2013', 'DarkToto', 'F', 11, '1008');
 INSERT INTO personagens VALUES ('2014', 'FireFreedom', 'M', 50, '1003');
+INSERT INTO personagens VALUES ('2015', 'Thanatos', 'F', 33, '1001');
+INSERT INTO personagens VALUES ('2016', 'Devorador de Mundos', 'M', 99, '1003');
 
 INSERT INTO equipamento (cod_p, arma) VALUES ('2001', 'Machado');
 INSERT INTO equipamento VALUES ('2002', 'Martelo', 'Armadura de Ossos');
@@ -48,6 +50,8 @@ INSERT INTO equipamento VALUES ('2011', 'Arco e Flecha', 'Armadura Leve');
 INSERT INTO equipamento VALUES ('2012', 'Cajado', 'Armadura Leve');
 INSERT INTO equipamento (cod_p, arma) VALUES ('2013', 'Adaga');
 INSERT INTO equipamento VALUES ('2014', 'Corrente', 'Armadura de Pegáso');
+INSERT INTO equipamento (cod_p) VALUES ('2015');
+INSERT INTO equipamento (cod_p) VALUES ('2016');
 
 INSERT INTO elfo VALUES ('2005', 'Khaen');
 INSERT INTO elfo VALUES ('2010', 'Hen');
