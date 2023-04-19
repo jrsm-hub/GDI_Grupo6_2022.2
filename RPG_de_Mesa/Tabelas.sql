@@ -131,7 +131,7 @@ CREATE TABLE tutor (
 CREATE TABLE playervsplayer (
     desafiante VARCHAR2 (4),
     desafiado VARCHAR2 (4),
-    vencedor VARCHAR2 (1),
+    vencedor VARCHAR2 (1) NOT NULL,
 
     CONSTRAINT playervsplayer_pkey PRIMARY KEY (desafiado, desafiante),
     CONSTRAINT playervsplayer_fkey1 FOREIGN KEY (desafiado) REFERENCES personagens(cod_p),
@@ -144,7 +144,7 @@ CREATE TABLE combate (
     cod_m VARCHAR2 (4),
     cod_l VARCHAR2 (4) ,
     data_hora DATE NOT NULL,
-    vencedor VARCHAR2 (1),
+    vencedor VARCHAR2 (1) NOT NULL,
 
     CONSTRAINT combate_pkey PRIMARY KEY (cod_p, cod_m, cod_l, data_hora),
     CONSTRAINT combate_fkey1 FOREIGN KEY (cod_p) REFERENCES personagens(cod_p),
