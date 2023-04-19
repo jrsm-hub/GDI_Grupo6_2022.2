@@ -119,7 +119,7 @@ CREATE TABLE tutor (
     aprendiz VARCHAR2 (4),
     mestre VARCHAR2 (4),
 
-    CONSTRAINT tutor_pkey PRIMARY KEY (aprendiz),
+    CONSTRAINT tutor_pkey PRIMARY KEY (mestre, aprendiz),
     CONSTRAINT tutor_fkey1 FOREIGN KEY (aprendiz) REFERENCES jogadores(cod_j),
     CONSTRAINT tutor_fkey2 FOREIGN key (mestre) REFERENCES jogadores(cod_j)
 );
