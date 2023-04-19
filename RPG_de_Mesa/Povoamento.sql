@@ -65,6 +65,9 @@ INSERT INTO humano VALUES ('2006', 'Morroc');
 INSERT INTO humano VALUES ('2007', 'Alberta');
 INSERT INTO humano VALUES ('2008', 'Einbech'); 
 INSERT INTO humano VALUES ('2009', 'Lighthalzen');
+INSERT INTO humano VALUES ('2015', 'Morroc'); 
+INSERT INTO humano VALUES ('2016', 'Lighthalzen');
+
 INSERT INTO orc VALUES ('2001', 'Clã Mascaosso');
 INSERT INTO orc VALUES ('2002', 'Clã Brado Guerreiro');
 INSERT INTO orc VALUES ('2003', 'Clã Mok’Nathal'); 
