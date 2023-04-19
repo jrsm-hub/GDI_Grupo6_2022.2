@@ -29,8 +29,15 @@ WHERE cod_p NOT IN (SELECT cod_p
 SELECT data_hora
 FROM combate 
 WHERE cod_l =  (SELECT cod_l
-		     FROM recompensas
-    		     WHERE id= '7006')
+		FROM recompensas
+    		WHERE id= '7006')
+		     
+--SUBCONSULTA TABELA: retorna o código do local em que o vencedor do combate foi o jogador
+SELECT cod_l
+FROM lugares 
+WHERE cod_l in (SELECT cod_l
+		FROM combate
+    		WHERE vencedor = 1)
 
 --Operacao de Conjunto: Retorna todos os possiveis participantes em combate (Monstros e personagens)
 SELECT nome AS PARTICIPANTES_DE_COMBATE
