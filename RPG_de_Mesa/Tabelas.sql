@@ -88,7 +88,7 @@ CREATE TABLE habilidades (
     cod_m VARCHAR2 (4), 
     habilidade VARCHAR2 (30),
 
-    CONSTRAINT habilidades_pkey PRIMARY KEY (cod_m),
+    CONSTRAINT habilidades_pkey PRIMARY KEY (cod_m, habilidade),
     CONSTRAINT habilidades_fkey FOREIGN KEY (cod_m) REFERENCES monstros(cod_m)
 );
 
