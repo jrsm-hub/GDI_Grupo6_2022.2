@@ -31,6 +31,14 @@ FROM combate
 WHERE cod_l =  (SELECT cod_l
 		FROM recompensas
     		WHERE id= '7006')
+		
+--Subconsulta do tipo linha: Retorna o nome e apelido do jogador que possui o  mesmo sexo e idade do jogador 1002
+SELECT nome, apelido
+FROM jogadores
+WHERE (sexo, idade) =  (SELECT sexo, idade
+                        FROM jogadores
+                        WHERE cod_j = '1002');
+
 		     
 --SUBCONSULTA TABELA: retorna o código do local em que o vencedor do combate foi o jogador
 SELECT cod_l
