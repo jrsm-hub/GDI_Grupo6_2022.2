@@ -20,3 +20,9 @@ WHERE nivel > (SELECT AVG(P.nivel)
 GROUP BY nivel
 ORDER BY nivel ASC
 
+-- Juncao interna: jogadores e seus personagens que desafiaram e sairam vitoriosos no PVP ordenado por nivel do menor para o maior
+SELECT J.nome as PLAYER, P.NOME as PERSONAGEM, P.nivel as NIVEL
+FROM jogadores J INNER JOIN personagens P ON (J.cod_j = P.cod_j)
+INNER JOIN playervsplayer PVP ON (P.cod_p = PVP.desafiante)
+WHERE vencedor = 0
+ORDER BY nivel ASC
