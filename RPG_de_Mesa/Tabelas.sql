@@ -159,7 +159,7 @@ CREATE TABLE recompensas (
     cod_p VARCHAR2 (4),
     cod_m VARCHAR2 (4),
     cod_l VARCHAR2 (4),
-    data_hora DATE NOT NULL,
+    data_hora DATE,
 
     CONSTRAINT recompensas_pkey PRIMARY KEY (id),
     CONSTRAINT recompensas_fkey1 FOREIGN KEY (cod_p, cod_m, cod_l, data_hora)  REFERENCES combate (cod_p, cod_m, cod_l, data_hora)
