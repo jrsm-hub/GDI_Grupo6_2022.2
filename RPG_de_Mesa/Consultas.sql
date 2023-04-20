@@ -4,34 +4,34 @@ FROM personagens
 WHERE nivel > (SELECT AVG(P.nivel)
     			FROM personagens P)
 GROUP BY nivel
-ORDER BY nivel ASC
+ORDER BY nivel ASC;
 
 --  juncao externa: Retorna jogadores sem personagens
 SELECT J.nome
 FROM jogadores J LEFT JOIN personagens P ON (J.cod_j = P.cod_j)
 WHERE P.cod_j IS NULL
-ORDER BY J.nome
+ORDER BY J.nome;
 
 -- Juncao interna: jogadores e seus personagens que desafiaram e sairam vitoriosos no PVP ordenado por nivel do menor para o maior
 SELECT J.nome as PLAYER, P.NOME as PERSONAGEM, P.nivel as NIVEL
 FROM jogadores J INNER JOIN personagens P ON (J.cod_j = P.cod_j)
 INNER JOIN playervsplayer PVP ON (P.cod_p = PVP.desafiante)
 WHERE vencedor = 0
-ORDER BY nivel ASC
+ORDER BY nivel ASC;
 
 -- ANTI-JUNÇÃO: Retorna o nome dos personagens que não tem armadur
 SELECT nome as vulneravel
 FROM personagens 
 WHERE cod_p NOT IN (SELECT cod_p
     		    FROM equipamento
-		    WHERE equipamento.armadura IS NOT NULL)
+		    WHERE equipamento.armadura IS NOT NULL);
 
 --SUBCONSULTA ESCALAR: retorna a data do drop do combate de um determinado local
 SELECT data_hora
 FROM combate 
 WHERE cod_l =  (SELECT cod_l
 		FROM recompensas
-    		WHERE id= '7006')
+    		WHERE id= '7006');
 		
 --Subconsulta do tipo linha: Retorna o nome e apelido do jogador que possui o  mesmo sexo e idade do jogador 1002
 SELECT nome, apelido
@@ -46,14 +46,14 @@ SELECT cod_l
 FROM lugares 
 WHERE cod_l in (SELECT cod_l
 		FROM combate
-    		WHERE vencedor = 1)
+    		WHERE vencedor = 1);
 
 --Operacao de Conjunto: Retorna todos os possiveis participantes em combate (Monstros e personagens)
 SELECT nome AS PARTICIPANTES_DE_COMBATE
 FROM personagens
 UNION
 SELECT nome
-FROM monstros
+FROM monstros;
 
 
 
