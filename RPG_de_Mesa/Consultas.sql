@@ -19,6 +19,18 @@ INNER JOIN playervsplayer PVP ON (P.cod_p = PVP.desafiante)
 WHERE vencedor = 0
 ORDER BY nivel ASC;
 
+--Semi join: Mostrar as colunas dos lugares onde ocorreram boss fight (player e o jogador venceu) 
+SELECT *
+FROM lugares l
+WHERE EXISTS (SELECT c.COD_L
+    	      FROM combate c
+              WHERE l.COD_L = c.COD_L
+              AND c.vencedor = 1
+              AND c.COD_M IN (SELECT m.COD_M 
+    			      FROM monstros m
+    			      WHERE m.classificacao = 'Boss'));
+
+
 -- ANTI-JUNÇÃO: Retorna o nome dos personagens que não tem armadur
 SELECT nome as vulneravel
 FROM personagens 
