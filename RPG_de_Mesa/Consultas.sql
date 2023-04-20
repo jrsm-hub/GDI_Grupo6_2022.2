@@ -19,6 +19,7 @@ INNER JOIN playervsplayer PVP ON (P.cod_p = PVP.desafiante)
 WHERE vencedor = 0
 ORDER BY nivel ASC
 
+-- ANTI-JUNÇÃO: Retorna o nome dos personagens que não tem armadur
 SELECT nome as vulneravel
 FROM personagens 
 WHERE cod_p NOT IN (SELECT cod_p
